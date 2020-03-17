@@ -14,10 +14,13 @@
     <link href="css/style_1.css" rel="stylesheet" type="text/css"/>
     <!-- Modernizr JS <script src="components/headerFecha.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
     <script src="js/modernizr-3.5.0.min.js"></script>
     <script src="componentes/fecha.js"></script>
     <script src="componentes/menuNav.js"></script>
     <script src="componentes/imagenes1.js"></script>
+    <script src="componentes/imagenes1H.js"></script>
     <script src="componentes/trending1.js"></script>
     <script src="componentes/new1.js"></script>
     <script src="componentes/new2.js"></script>
@@ -40,8 +43,33 @@
         <foot></foot>
     </div>
     <script>
+        const store = new Vuex.Store({
+            state : {
+                numero: 10,
+                pelis: []
+            },
+            mutations:{
+                verPelis(state,peliculasA){
+                    state.pelis = peliculasA
+                }
+            },
+            actions: {
+                peliculas: async function ({commit}) {
+                    const data = await fetch('http://perasperaadastra.xibalbacv.dx.am/getN/')
+                    const pelis = await data.json()
+                    console.log('aaaaaaa')
+                    console.log(pelis.items)
+                    commit('verPelis',pelis.items)
+                }
+            }
+        })
         new Vue({
-            el: '#app'
+            el: '#app',
+            store: store,
+            data () {
+                return {
+                }
+            }
         })
     </script>
     </script>
