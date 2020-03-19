@@ -3,15 +3,9 @@ Vue.component('imagenes1', {
     `
     <div>
         <imagenes1H :datos="datosP"></imagenes1H>
-        sssss{{numero}}xxx
-        <button @click="peliculas">aaaaaaaaa</button>
-        <ul v-for="item of pelis">
-            <li>{{item.imagen}}</li>
-        </ul>
     </div>
     `,
     computed: {
-        ...Vuex.mapState(['numero','pelis'])
     },
     data () {
         return {
@@ -19,7 +13,6 @@ Vue.component('imagenes1', {
         }
     },
     methods: {
-        ...Vuex.mapActions(['peliculas']),
         consulta () {
             axios.post('http://perasperaadastra.xibalbacv.dx.am/getN/')
                 .then(function (response) {

@@ -46,20 +46,31 @@
         const store = new Vuex.Store({
             state : {
                 numero: 10,
-                pelis: []
+                pelis: [],
+                foto: '',
+                foto2: '',
+                foto3: '',
+                foto4: ''
             },
             mutations:{
-                verPelis(state,peliculasA){
+                verPelis(state, peliculasA) {
+                    console.log('fotos mutationss')
+                    console.log(peliculasA[0].imagen)
+                    
                     state.pelis = peliculasA
+                    state.foto = peliculasA[0].imagen
+                    state.foto2 = peliculasA[1].imagen
+                    state.foto3 = peliculasA[2].imagen
+                    state.foto4 = peliculasA[3].imagen
                 }
             },
             actions: {
                 peliculas: async function ({commit}) {
                     const data = await fetch('http://perasperaadastra.xibalbacv.dx.am/getN/')
                     const pelis = await data.json()
-                    console.log('aaaaaaa')
-                    console.log(pelis.items)
-                    commit('verPelis',pelis.items)
+                    const a = pelis.items
+                    commit('verPelis',a)
+                    // console.log(pelis.items[0].imagen)
                 }
             }
         })

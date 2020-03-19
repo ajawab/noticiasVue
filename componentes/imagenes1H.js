@@ -3,10 +3,9 @@ Vue.component('imagenes1H', {
     `
     <div>
         <div class="container-fluid paddding mb-5">
-        {{$store.state.numero}}
             <div class="row mx-0">
                 <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
-                    <div class="fh5co_suceefh5co_height"><img src="images/poster05.jpeg" alt="img"/>
+                    <div class="fh5co_suceefh5co_height"><img :src="foto" alt="img"/>
                         <div class="fh5co_suceefh5co_height_position_absolute"></div>
                         <div class="fh5co_suceefh5co_height_position_absolute_font">
                             <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Dec 31,2017
@@ -18,7 +17,7 @@ Vue.component('imagenes1H', {
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                            <div class="fh5co_suceefh5co_height_2"><img src="images/science-578x362.jpg" alt="img"/>
+                            <div class="fh5co_suceefh5co_height_2"><img :src="foto2" alt="img"/>
                                 <div class="fh5co_suceefh5co_height_position_absolute"></div>
                                 <div class="fh5co_suceefh5co_height_position_absolute_font_2">
                                     <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct
@@ -28,7 +27,7 @@ Vue.component('imagenes1H', {
                             </div>
                         </div>
                         <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                            <div class="fh5co_suceefh5co_height_2"><img src="images/joe-gardner-75333.jpg" alt="img"/>
+                            <div class="fh5co_suceefh5co_height_2"><img :src="foto3" alt="img"/>
                                 <div class="fh5co_suceefh5co_height_position_absolute"></div>
                                 <div class="fh5co_suceefh5co_height_position_absolute_font_2">
                                     <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28,2017 </a></div>
@@ -37,7 +36,7 @@ Vue.component('imagenes1H', {
                             </div>
                         </div>
                         <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
-                            <div class="fh5co_suceefh5co_height_2"><img src="images/ryan-moreno-98837.jpg" alt="img"/>
+                            <div class="fh5co_suceefh5co_height_2"><img :src="foto4" alt="img"/>
                                 <div class="fh5co_suceefh5co_height_position_absolute"></div>
                                 <div class="fh5co_suceefh5co_height_position_absolute_font_2">
                                     <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct
@@ -62,7 +61,15 @@ Vue.component('imagenes1H', {
         </div>
     </div>
     `,
+    computed: {
+        ...Vuex.mapState(['numero','pelis','foto','foto2','foto3','foto4'])
+    },
+    methods: {
+        // ...Vuex.mapMutations(['verPelisA']),
+        ...Vuex.mapActions(['peliculas'])
+    },
     props: ['datos'],
     mounted () {
+        this.peliculas()
     }
 });
